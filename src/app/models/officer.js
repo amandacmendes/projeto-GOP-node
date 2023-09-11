@@ -1,7 +1,7 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 
-class Officer extends Model {
+class OfficerModel extends Model {
 
   static init(database) {
     super.init({
@@ -18,4 +18,4 @@ class Officer extends Model {
   }
 };
 
-module.exports = { Officer };
+module.exports = { OfficerModel };

@@ -1,6 +1,6 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
-class Reason extends Model {
+class ReasonModel extends Model {
 
   static init(database) {
     super.init({
@@ -21,4 +21,4 @@ class Reason extends Model {
   }
 }
 
-module.exports = { Reason }
+module.exports = { ReasonModel }

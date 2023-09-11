@@ -2,15 +2,15 @@ const { Sequelize } = require('sequelize');
 const configDatabase = require('./config');
 
 //const Models
-const { Officer } = require('../app/models/officer');
-const { OfficerOperation } = require('../app/models/officeroperation');
-const { Operation } = require('../app/models/operation');
-const { Reason } = require('../app/models/reason');
-const { ReasonType } = require('../app/models/reasontype');
-const { Resource } = require('../app/models/resource');
-const { ResourceOperation } = require('../app/models/resourceoperation');
-const { ResourceType } = require('../app/models/resourcetype');
-const { Team } = require('../app/models/team');
+const { OfficerModel } = require('../app/models/officer');
+const { OfficerOperationModel } = require('../app/models/officeroperation');
+const { OperationModel } = require('../app/models/operation');
+const { ReasonModel } = require('../app/models/reason');
+const { ReasonTypeModel } = require('../app/models/reasontype');
+const { ResourceModel } = require('../app/models/resource');
+const { ResourceOperationModel } = require('../app/models/resourceoperation');
+const { ResourceTypeModel } = require('../app/models/resourcetype');
+const { TeamModel } = require('../app/models/team');
 const { UserModel } = require('../app/models/user');
 
 //const { MerendeiraModel } = require('../models/merendeira-model');
@@ -20,15 +20,15 @@ const { UserModel } = require('../app/models/user');
 const database = new Sequelize(configDatabase);
 
 //init models
-Officer.init(database);
-OfficerOperation.init(database);
-Operation.init(database);
-Reason.init(database);
-ReasonType.init(database);
-Resource.init(database);
-ResourceOperation.init(database);
-ResourceType.init(database);
-Team.init(database);
+OfficerModel.init(database);
+OfficerOperationModel.init(database);
+OperationModel.init(database);
+ReasonModel.init(database);
+ReasonTypeModel.init(database);
+ResourceModel.init(database);
+ResourceOperationModel.init(database);
+ResourceTypeModel.init(database);
+TeamModel.init(database);
 UserModel.init(database);
 
 module.exports = database;

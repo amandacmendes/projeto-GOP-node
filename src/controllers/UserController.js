@@ -4,7 +4,7 @@ const { TOKEN_SECRET, SALT } = require('../../environments');
 const { HttpHelper } = require('../utils/http-helper');
 
 const { UserModel } = require('../app/models/user');
-const OfficerModel = require('../app/models/officer');
+const { OfficerModel } = require('../app/models/officer');
 
 
 class UserController {
@@ -95,6 +95,12 @@ class UserController {
             const officer = await OfficerModel.create({ name });
 
             // Atualiza usuario com officer_id
+            user.update(
+                {
+                    officer_id: officer.id
+                }, {
+                where: { id: user.id }
+            });
 
             // Gera e retorna access token
             const accessToken = jwt.sign(

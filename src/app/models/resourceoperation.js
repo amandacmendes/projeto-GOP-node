@@ -2,7 +2,7 @@
 const { Model, DataTypes } = require('sequelize');
 
 
-class ResourceOperation extends Model {
+class ResourceOperationModel extends Model {
 
   static init(database) {
     super.init({
@@ -22,4 +22,4 @@ class ResourceOperation extends Model {
   }
 }
 
-module.exports = { ResourceOperation };
+module.exports = { ResourceOperationModel };

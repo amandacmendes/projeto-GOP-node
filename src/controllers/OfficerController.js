@@ -1,5 +1,5 @@
 const { HttpHelper } = require('../utils/http-helper');
-const OfficerModel = require('../app/models/officer');
+const { OfficerModel } = require('../app/models/officer');
 
 class OfficerController {
 
