@@ -11,7 +11,7 @@ const { Resource } = require('../app/models/resource');
 const { ResourceOperation } = require('../app/models/resourceoperation');
 const { ResourceType } = require('../app/models/resourcetype');
 const { Team } = require('../app/models/team');
-const { User } = require('../app/models/user');
+const { UserModel } = require('../app/models/user');
 
 //const { MerendeiraModel } = require('../models/merendeira-model');
 //const { NutricionistaModel } = require('../models/nutricionista-model');
@@ -29,6 +29,6 @@ Resource.init(database);
 ResourceOperation.init(database);
 ResourceType.init(database);
 Team.init(database);
-User.init(database);
+UserModel.init(database);
 
 module.exports = database;
