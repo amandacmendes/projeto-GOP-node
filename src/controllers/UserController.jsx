@@ -25,7 +25,7 @@ class UserController {
                 email,
                 password: passwordHashed,
             });
-            
+
             if (!user) return httpHelper.badRequest('Houve um erro ao criar usuário');
             
             const accessToken = jwt.sign(
