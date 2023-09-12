@@ -141,7 +141,7 @@ class OfficerOperationController {
                 officer_id,
                 operation_id
             }, {
-                where: { officer_id: officer_id, operation_id: operation_id }
+                where: { officer_id: ofid, operation_id: oid }
             });
 
             return httpHelper.ok({
