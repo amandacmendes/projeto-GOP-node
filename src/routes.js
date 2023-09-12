@@ -5,12 +5,14 @@ const { authMiddleware } = require('./middlewares/auth-middleware');
 const { OfficerController } = require('./controllers/OfficerController');
 const { UserController } = require('./controllers/UserController');
 const { TeamController } = require('./controllers/TeamController');
+const { OperationController } = require('./controllers/OperationController');
 
 const routes = Router();
 
 const userController = new UserController();
 const officerController = new OfficerController();
 const teamController = new TeamController();
+const operationController = new OperationController();
 
 // Users
 routes.post('/signup', userController.signup);
@@ -28,6 +30,11 @@ routes.get('/team', authMiddleware, teamController.getAll);
 routes.delete('/team/:id', authMiddleware, teamController.delete);
 routes.put('/team/:id', authMiddleware, teamController.update);
 
+// Operation
+routes.post('/operation', authMiddleware, operationController.create);
+routes.get('/operation', authMiddleware, operationController.getAll);
+routes.delete('/operation/:id', authMiddleware, operationController.delete);
+routes.put('/operation/:id', authMiddleware, operationController.update);
 
 
 module.exports = { routes };

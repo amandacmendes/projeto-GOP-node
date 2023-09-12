@@ -60,9 +60,9 @@ class TeamController {
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
-            const teamExisits = await TeamModel.findOne({ where: { id } });
+            const teamExists = await TeamModel.findOne({ where: { id } });
 
-            if (!teamExisits) return httpHelper.notFound('Equipe não encontrada!');
+            if (!teamExists) return httpHelper.notFound('Equipe não encontrada!');
 
             // SET OPTIONS PARANOID:TRUE AND TIMESTAMPS: TRUE ON TEAMMODEL TO SOFTDELETE A TEAM.
             await TeamModel.destroy({ where: { id } });
@@ -86,9 +86,9 @@ class TeamController {
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
-            const officerExists = await TeamModel.findByPk(id);
+            const teamExists = await TeamModel.findByPk(id);
 
-            if (!officerExists) return httpHelper.notFound('Equipe não encontrada!');
+            if (!teamExists) return httpHelper.notFound('Equipe não encontrada!');
 
             await TeamModel.update({
                 team_name, status
