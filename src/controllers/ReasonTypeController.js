@@ -6,19 +6,19 @@ class ReasonTypeController {
     async create(request, response) {
         try {
 
-            const { description, reasontype_id, operation_id } = request.body;
+            const { description } = request.body;
 
-            if (!description || !operation_id) {
+            if (!description) {
                 return response.status(400).json({
                     error: 'Campos obrigatórios não foram preenchidos.'
                 });
             }
 
-            const reason = await ReasonModel.create({
-                description, reasontype_id, operation_id
+            const reasonType = await ReasonTypeModel.create({
+                description
             });
 
-            return response.status(201).json(reason);
+            return response.status(201).json(reasonType);
 
         } catch (error) {
             return response.status(500).json({
@@ -29,27 +29,7 @@ class ReasonTypeController {
 
     async getAll(request, response) {
         try {
-
-            const reasons = await ReasonModel.findAll()
-                .then((data) => {
-                    if (data) {
-                        return response.status(200).json(data);
-                    } else {
-                        return response.status(204).json({ msg: "Não existem dados cadastrados." });
-                    }
-                });
-        } catch (error) {
-            return response.status(500).json({
-                error: `Erro interno: ${error}`
-            });
-        }
-    }
-
-    async getAllByOperationId(request, response) {
-        try {
-            const { oid } = request.params;
-
-            const reasons = await ReasonModel.findAll({ where: { operation_id: oid } })
+            const reasonTypes = await ReasonTypeModel.findAll()
                 .then((data) => {
                     if (data) {
                         return response.status(200).json(data);
@@ -74,14 +54,14 @@ class ReasonTypeController {
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
-            const reasonExists = await ReasonModel.findOne({ where: { id } });
+            const reasonTypeExists = await ReasonTypeModel.findOne({ where: { id } });
 
-            if (!reasonExists) return httpHelper.notFound('Objeto não encontrado!');
+            if (!reasonTypeExists) return httpHelper.notFound('Objeto não encontrado!');
 
-            await ReasonModel.destroy({ where: { id } });
+            await ReasonTypeModel.destroy({ where: { id } });
 
             return httpHelper.ok({
-                message: 'Motivação deletada com sucesso!'
+                message: 'Tipo de motivação deletada com sucesso!'
             })
         } catch (error) {
             return httpHelper.internalError(`Erro interno: ${error}`);
@@ -95,22 +75,22 @@ class ReasonTypeController {
         try {
 
             const { id } = request.params;
-            const { description, reasontype_id, operation_id } = request.body;
+            const { description } = request.body;
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
-            const reasonExists = await ReasonModel.findByPk(id);
+            const reasonTypeExists = await ReasonTypeModel.findByPk(id);
 
-            if (!reasonExists) return httpHelper.notFound('Valor não encontrado!');
+            if (!reasonTypeExists) return httpHelper.notFound('Objeto não encontrado!');
 
-            await ReasonModel.update({
-                description, reasontype_id, operation_id
+            await ReasonTypeModel.update({
+                description
             }, {
                 where: { id }
             });
 
             return httpHelper.ok({
-                message: 'Motivação alterada com sucesso!'
+                message: 'Tipo de motivação alterada com sucesso!'
             });
 
         } catch (error) {
