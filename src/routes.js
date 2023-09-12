@@ -11,6 +11,7 @@ const { ReasonController } = require('./controllers/ReasonController');
 const { ReasonTypeController } = require('./controllers/ReasonTypeController');
 const { ResourceController } = require('./controllers/ResourceController');
 const { ResourceTypeController } = require('./controllers/ResourceTypeController');
+const { ResourceOperationController } = require('./controllers/ResourceOperationController');
 
 const routes = Router();
 
@@ -23,6 +24,7 @@ const reasonController = new ReasonController();
 const reasonTypeController = new ReasonTypeController();
 const resourceController = new ResourceController();
 const resourceTypeController = new ResourceTypeController();
+const resourceOperationController = new ResourceOperationController();
 
 // Users
 routes.post('/signup', userController.signup);
@@ -78,6 +80,14 @@ routes.post('/resourcetype', authMiddleware, resourceTypeController.create);
 routes.get('/resourcetype', authMiddleware, resourceTypeController.getAll);
 routes.delete('/resourcetype/:id', authMiddleware, resourceTypeController.delete);
 routes.put('/resourcetype/:id', authMiddleware, resourceTypeController.update);
+
+// Resource Operation
+routes.post('/resourceoperation', authMiddleware, resourceOperationController.create);
+routes.get('/resourceoperation', authMiddleware, resourceOperationController.getAll);
+routes.put('/resource/:rid/operation/:oid', authMiddleware, resourceOperationController.update);
+routes.delete('/resource/:rid/operation/:oid', authMiddleware, resourceOperationController.delete);
+routes.get('/resourceoperation/resource/:rid', authMiddleware, resourceOperationController.getAllFromResource);
+routes.get('/resourceoperation/operation/:oid', authMiddleware, resourceOperationController.getAllFromOperation);
 
 
 module.exports = { routes };
