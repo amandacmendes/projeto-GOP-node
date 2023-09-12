@@ -31,7 +31,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       operation_results_report: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1000)
       },
       createdAt: {
         allowNull: false,

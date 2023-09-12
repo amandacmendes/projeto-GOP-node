@@ -13,10 +13,6 @@ const { ResourceTypeModel } = require('../app/models/resourcetype');
 const { TeamModel } = require('../app/models/team');
 const { UserModel } = require('../app/models/user');
 
-//const { MerendeiraModel } = require('../models/merendeira-model');
-//const { NutricionistaModel } = require('../models/nutricionista-model');
-//const { NotaFiscalModel } = require('../models/nota-fiscal-mode');
-
 const database = new Sequelize(configDatabase);
 
 //init models
@@ -30,5 +26,7 @@ ResourceOperationModel.init(database);
 ResourceTypeModel.init(database);
 TeamModel.init(database);
 UserModel.init(database);
+
+database.sync({force: true});
 
 module.exports = database;
