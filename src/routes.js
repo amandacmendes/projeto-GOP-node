@@ -10,6 +10,7 @@ const { OfficerOperationController } = require('./controllers/OfficerOperationCo
 const { ReasonController } = require('./controllers/ReasonController');
 const { ReasonTypeController } = require('./controllers/ReasonTypeController');
 const { ResourceController } = require('./controllers/ResourceController');
+const { ResourceTypeController } = require('./controllers/ResourceTypeController');
 
 const routes = Router();
 
@@ -21,6 +22,7 @@ const officerOperationController = new OfficerOperationController();
 const reasonController = new ReasonController();
 const reasonTypeController = new ReasonTypeController();
 const resourceController = new ResourceController();
+const resourceTypeController = new ResourceTypeController();
 
 // Users
 routes.post('/signup', userController.signup);
@@ -70,6 +72,12 @@ routes.post('/resource', authMiddleware, resourceController.create);
 routes.get('/resource', authMiddleware, resourceController.getAll);
 routes.delete('/resource/:id', authMiddleware, resourceController.delete);
 routes.put('/resource/:id', authMiddleware, resourceController.update);
+
+// ResourceType
+routes.post('/resourcetype', authMiddleware, resourceTypeController.create);
+routes.get('/resourcetype', authMiddleware, resourceTypeController.getAll);
+routes.delete('/resourcetype/:id', authMiddleware, resourceTypeController.delete);
+routes.put('/resourcetype/:id', authMiddleware, resourceTypeController.update);
 
 
 module.exports = { routes };
