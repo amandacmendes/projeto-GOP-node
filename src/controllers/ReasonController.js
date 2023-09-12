@@ -45,6 +45,25 @@ class ReasonController {
         }
     }
 
+    async getAllByOperationId(request, response) {
+        try {
+            const { oid } = request.params;
+
+            const reasons = await ReasonModel.findAll({ where: { operation_id: oid } })
+                .then((data) => {
+                    if (data) {
+                        return response.status(200).json(data);
+                    } else {
+                        return response.status(204).json({ msg: "Não existem dados cadastrados." });
+                    }
+                });
+        } catch (error) {
+            return response.status(500).json({
+                error: `Erro interno: ${error}`
+            });
+        }
+    }
+
     async delete(request, response) {
 
         const httpHelper = new HttpHelper(response);
