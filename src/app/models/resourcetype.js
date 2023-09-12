@@ -1,7 +1,6 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 
-
 class ResourceTypeModel extends Model {
 
   static init(database) {
