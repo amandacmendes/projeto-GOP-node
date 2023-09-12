@@ -8,6 +8,7 @@ const { TeamController } = require('./controllers/TeamController');
 const { OperationController } = require('./controllers/OperationController');
 const { OfficerOperationController } = require('./controllers/OfficerOperationController');
 const { ReasonController } = require('./controllers/ReasonController');
+const { ReasonTypeController } = require('./controllers/ReasonTypeController');
 
 const routes = Router();
 
@@ -17,6 +18,7 @@ const teamController = new TeamController();
 const operationController = new OperationController();
 const officerOperationController = new OfficerOperationController();
 const reasonController = new ReasonController();
+const reasonTypeController = new ReasonTypeController();
 
 // Users
 routes.post('/signup', userController.signup);
@@ -54,5 +56,11 @@ routes.get('/reason', authMiddleware, reasonController.getAll);
 routes.get('/reason/:oid', authMiddleware, reasonController.getAllByOperationId);
 routes.delete('/reason/:id', authMiddleware, reasonController.delete);
 routes.put('/reason/:id', authMiddleware, reasonController.update);
+
+// ReasonType
+routes.post('/reasontype', authMiddleware, reasonTypeController.create);
+routes.get('/reasontype', authMiddleware, reasonTypeController.getAll);
+routes.delete('/reasontype/:id', authMiddleware, reasonTypeController.delete);
+routes.put('/reasontype/:id', authMiddleware, reasonTypeController.update);
 
 module.exports = { routes };
