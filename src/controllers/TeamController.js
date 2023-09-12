@@ -68,10 +68,10 @@ class TeamController {
             await TeamModel.destroy({ where: { id } });
 
             return httpHelper.ok({
-                message: 'equipe deletado com sucesso!'
+                message: 'Equipe deletada com sucesso!'
             })
         } catch (error) {
-            return httpHelper.internalError(error);
+            return httpHelper.internalError(`Erro interno: ${error}`);
         }
     }
 
@@ -82,26 +82,26 @@ class TeamController {
         try {
 
             const { id } = request.params;
-            const { name, status } = request.body;
+            const { team_name, status } = request.body;
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
             const officerExists = await TeamModel.findByPk(id);
 
-            if (!officerExists) return httpHelper.notFound('equipe não encontrado!');
+            if (!officerExists) return httpHelper.notFound('Equipe não encontrada!');
 
             await TeamModel.update({
-                name, status
+                team_name, status
             }, {
                 where: { id }
             });
 
             return httpHelper.ok({
-                message: 'equipe atualizado com sucesso!'
+                message: 'Equipe atualizada com sucesso!'
             });
 
         } catch (error) {
-            return httpHelper.internalError(error);
+            return httpHelper.internalError(`Erro interno: ${error}`);
         }
     }
 
