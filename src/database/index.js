@@ -27,6 +27,4 @@ ResourceTypeModel.init(database);
 TeamModel.init(database);
 UserModel.init(database);
 
-database.sync({force: true});
-
 module.exports = database;

@@ -47,6 +47,8 @@ routes.post('/operation', authMiddleware, operationController.create);
 routes.get('/operation', authMiddleware, operationController.getAll);
 routes.delete('/operation/:id', authMiddleware, operationController.delete);
 routes.put('/operation/:id', authMiddleware, operationController.update);
+routes.get('/operation/:id', authMiddleware, operationController.getById);
+
 
 // OfficerOperation
 routes.post('/officeroperation', authMiddleware, officerOperationController.create);

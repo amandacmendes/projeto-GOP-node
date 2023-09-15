@@ -1,6 +1,7 @@
+const { OfficerModel } = require('../app/models/officer');
+const { OfficerOperationModel } = require('../app/models/officeroperation');
 const { OperationModel } = require('../app/models/operation');
 const { HttpHelper } = require('../utils/http-helper');
-
 
 class OperationController {
 
@@ -41,7 +42,6 @@ class OperationController {
 
     async getAll(request, response) {
         try {
-
             const operations = await OperationModel.findAll()
                 .then((data) => {
                     if (data) {
@@ -50,6 +50,30 @@ class OperationController {
                         return response.status(204).json({ msg: "Não existem dados cadastrados." });
                     }
                 });
+        } catch (error) {
+            return response.status(500).json({
+                error: `Erro interno: ${error}`
+            });
+        }
+    }
+
+    async getById(request, response) {
+        try {
+            const { id } = request.params;
+
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+
+            const operation = await OperationModel.findOne({
+                where: { id }
+            })
+                .then((data) => {
+                    if (data) {
+                        return response.status(200).json(data);
+                    } else {
+                        return response.status(204).json({ msg: "Não existem dados cadastrados." });
+                    }
+                });
+
         } catch (error) {
             return response.status(500).json({
                 error: `Erro interno: ${error}`
