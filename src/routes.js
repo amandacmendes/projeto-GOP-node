@@ -61,7 +61,7 @@ routes.get('/officeroperation/operation/:oid', authMiddleware, officerOperationC
 // Reason
 routes.post('/reason', authMiddleware, reasonController.create);
 routes.get('/reason', authMiddleware, reasonController.getAll);
-routes.get('/reason/:oid', authMiddleware, reasonController.getAllByOperationId);
+routes.get('/reason/operation/:oid', authMiddleware, reasonController.getAllByOperationId);
 routes.delete('/reason/:id', authMiddleware, reasonController.delete);
 routes.put('/reason/:id', authMiddleware, reasonController.update);
 
