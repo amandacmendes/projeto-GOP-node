@@ -44,6 +44,25 @@ class ResourceController {
             });
         }
     }
+    
+    async getById(request, response) {
+        try {
+            const { id } = request.params;
+
+            await ResourceModel.findOne({ where: { id } })
+                .then((data) => {
+                    if (data) {
+                        return response.status(200).json(data);
+                    } else {
+                        return response.status(204).json({ msg: "Não existem dados cadastrados." });
+                    }
+                });
+        } catch (error) {
+            return response.status(500).json({
+                error: `Erro interno: ${error}`
+            });
+        }
+    }
 
     async delete(request, response) {
 
