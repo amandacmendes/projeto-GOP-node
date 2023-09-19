@@ -91,7 +91,6 @@ class ResourceOperationController {
     }
 
     async delete(request, response) {
-
         const httpHelper = new HttpHelper(response);
 
         try {
@@ -110,6 +109,31 @@ class ResourceOperationController {
 
             return httpHelper.ok({
                 message: 'Recurso desvinculado de Operação com sucesso!'
+            })
+        } catch (error) {
+            return httpHelper.internalError(`Erro interno: ${error}`);
+        }
+    }
+
+    async deleteAllWithOperationId(request, response) {
+        const httpHelper = new HttpHelper(response);
+
+        try {
+
+            const { oid } = request.params;
+
+            if (!oid) return httpHelper.badRequest('Parâmetros inválidos!');
+
+            const resource_operation_Exists = await ResourceOperationModel.findAll({
+                where: { operation_id: oid }
+            });
+
+            if (!resource_operation_Exists) return httpHelper.notFound('Registro não existe no sistema!');
+
+            await ResourceOperationModel.destroy({ where: { operation_id: oid } });
+
+            return httpHelper.ok({
+                message: 'Todos os recursos desvinculados de Operação com sucesso!'
             })
         } catch (error) {
             return httpHelper.internalError(`Erro interno: ${error}`);

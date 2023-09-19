@@ -55,6 +55,7 @@ routes.post('/officeroperation', authMiddleware, officerOperationController.crea
 routes.get('/officeroperation', authMiddleware, officerOperationController.getAll);
 routes.put('/officer/:ofid/operation/:oid', authMiddleware, officerOperationController.update);
 routes.delete('/officer/:ofid/operation/:oid', authMiddleware, officerOperationController.delete);
+routes.delete('/officeroperation/operation/:oid', authMiddleware, officerOperationController.deleteAllWithOperationId);
 routes.get('/officeroperation/officer/:ofid', authMiddleware, officerOperationController.getAllFromOfficer);
 routes.get('/officeroperation/operation/:oid', authMiddleware, officerOperationController.getAllFromOperation);
 
@@ -74,6 +75,7 @@ routes.put('/reasontype/:id', authMiddleware, reasonTypeController.update);
 // Resource
 routes.post('/resource', authMiddleware, resourceController.create);
 routes.get('/resource', authMiddleware, resourceController.getAll);
+routes.get('/resource/:id', authMiddleware, resourceController.getById);
 routes.delete('/resource/:id', authMiddleware, resourceController.delete);
 routes.put('/resource/:id', authMiddleware, resourceController.update);
 
@@ -88,6 +90,7 @@ routes.post('/resourceoperation', authMiddleware, resourceOperationController.cr
 routes.get('/resourceoperation', authMiddleware, resourceOperationController.getAll);
 routes.put('/resource/:rid/operation/:oid', authMiddleware, resourceOperationController.update);
 routes.delete('/resource/:rid/operation/:oid', authMiddleware, resourceOperationController.delete);
+routes.delete('/resourceoperation/operation/:oid', authMiddleware, resourceOperationController.deleteAllWithOperationId);
 routes.get('/resourceoperation/resource/:rid', authMiddleware, resourceOperationController.getAllFromResource);
 routes.get('/resourceoperation/operation/:oid', authMiddleware, resourceOperationController.getAllFromOperation);
 
