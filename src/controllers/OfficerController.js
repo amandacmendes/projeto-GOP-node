@@ -115,6 +115,37 @@ class OfficerController {
         }
     }
 
+
+    async updateTeam(request, response) {
+
+        const httpHelper = new HttpHelper(response);
+
+        try {
+
+            const { tid } = request.params;
+            const { name, team_id } = request.body;
+
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+
+            const officerExists = await OfficerModel.findAll({ where: { team_id } });
+
+            if (!officerExists) return httpHelper.notFound('Policial não encontrado!');
+
+            await OfficerModel.update({
+                name, team_id
+            }, {
+                where: { tid }
+            });
+
+            return httpHelper.ok({
+                message: 'Time de policiais atualizados com sucesso!'
+            });
+
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
 }
 
 module.exports = { OfficerController }
