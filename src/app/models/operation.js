@@ -9,6 +9,7 @@ class OperationModel extends Model {
       operation_place: DataTypes.STRING,
       operation_planned_date: DataTypes.DATE,
       operation_date: DataTypes.DATE,
+      lead_officer_id: DataTypes.INTEGER,
       status: DataTypes.STRING,
       operation_results_deaths: DataTypes.INTEGER,
       operation_results_arrests: DataTypes.INTEGER,
@@ -21,6 +22,7 @@ class OperationModel extends Model {
   }
 
   static associate(models) {
+    this.belongsTo(models.Officer, {foreignKey:'lead_officer_id'})
   }
 }
 
