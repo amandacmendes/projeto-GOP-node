@@ -13,7 +13,8 @@ class OperationModel extends Model {
       status: DataTypes.STRING,
       operation_results_deaths: DataTypes.INTEGER,
       operation_results_arrests: DataTypes.INTEGER,
-      operation_results_report: DataTypes.STRING(1000)
+      operation_results_report: DataTypes.STRING(1000),
+      operation_results_seizures: DataTypes.INTEGER
     }, {
       sequelize: database,
       tableName: 'operation',

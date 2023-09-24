@@ -17,7 +17,8 @@ class OperationController {
                 status,
                 operation_results_deaths,
                 operation_results_arrests,
-                operation_results_report
+                operation_results_report,
+                operation_results_seizures
             } = request.body;
 
             // Cria Operação Policial
@@ -30,7 +31,8 @@ class OperationController {
                 status,
                 operation_results_deaths,
                 operation_results_arrests,
-                operation_results_report
+                operation_results_report,
+                operation_results_seizures
             });
 
             return response.status(201).json(operation);
@@ -123,7 +125,8 @@ class OperationController {
                 status,
                 operation_results_deaths,
                 operation_results_arrests,
-                operation_results_report
+                operation_results_report,
+                operation_results_seizures
             } = request.body;
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
@@ -141,7 +144,8 @@ class OperationController {
                 status,
                 operation_results_deaths,
                 operation_results_arrests,
-                operation_results_report
+                operation_results_report,
+                operation_results_seizures
             }, {
                 where: { id }
             });
