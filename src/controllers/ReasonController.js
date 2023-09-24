@@ -88,6 +88,30 @@ class ReasonController {
         }
     }
 
+    async deleteAllWithOperationId(request, response) {
+
+        const httpHelper = new HttpHelper(response);
+
+        try {
+
+            const { oid } = request.params;
+
+            if (!oid) return httpHelper.badRequest('Parâmetros inválidos!');
+
+            const reasonExists = await ReasonModel.findOne({ where: { operation_id: oid } });
+
+            if (!reasonExists) return httpHelper.notFound('Objeto não encontrado!');
+
+            await ReasonModel.destroy({ where: { operation_id: oid } });
+
+            return httpHelper.ok({
+                message: 'Motivação deletada com sucesso!'
+            })
+        } catch (error) {
+            return httpHelper.internalError(`Erro interno: ${error}`);
+        }
+    }
+
     async update(request, response) {
 
         const httpHelper = new HttpHelper(response);

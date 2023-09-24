@@ -66,6 +66,7 @@ routes.post('/reason', authMiddleware, reasonController.create);
 routes.get('/reason', authMiddleware, reasonController.getAll);
 routes.get('/reason/operation/:oid', authMiddleware, reasonController.getAllByOperationId);
 routes.delete('/reason/:id', authMiddleware, reasonController.delete);
+routes.delete('/reason/operation/:oid', authMiddleware, reasonController.deleteAllWithOperationId);
 routes.put('/reason/:id', authMiddleware, reasonController.update);
 
 // ReasonType
