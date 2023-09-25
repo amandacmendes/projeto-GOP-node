@@ -38,6 +38,7 @@ routes.put('/user/:id', authMiddleware, userController.update);
 // Officer
 routes.post('/officer', authMiddleware, officerController.create);
 routes.get('/officer', authMiddleware, officerController.getAll);
+routes.get('/officer/:id', authMiddleware, officerController.getById);
 routes.delete('/officer/:id', authMiddleware, officerController.delete);
 routes.put('/officer/:id', authMiddleware, officerController.update);
 routes.put('/officer/team/:tid', authMiddleware, officerController.updateTeam);

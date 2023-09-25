@@ -47,11 +47,12 @@ class UserController {
             const accessToken = jwt.sign(
                 { id: userExists.id },
                 TOKEN_SECRET,
-                { expiresIn: '30m' }
+                { expiresIn: '60m' }
             );
 
             return response.status(200).json({
-                accessToken
+                accessToken, 
+                id: userExists.id
             });
 
         } catch (error) {
@@ -211,7 +212,7 @@ class UserController {
 
 
 
-    
+
     async register(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
