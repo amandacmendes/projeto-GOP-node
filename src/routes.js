@@ -58,6 +58,7 @@ routes.get('/officeroperation', authMiddleware, officerOperationController.getAl
 routes.put('/officer/:ofid/operation/:oid', authMiddleware, officerOperationController.update);
 routes.delete('/officer/:ofid/operation/:oid', authMiddleware, officerOperationController.delete);
 routes.delete('/officeroperation/operation/:oid', authMiddleware, officerOperationController.deleteAllWithOperationId);
+routes.delete('/officeroperation/officer/:ofid', authMiddleware, officerOperationController.deleteAllWithOfficerId);
 routes.get('/officeroperation/officer/:ofid', authMiddleware, officerOperationController.getAllFromOfficer);
 routes.get('/officeroperation/operation/:oid', authMiddleware, officerOperationController.getAllFromOperation);
 

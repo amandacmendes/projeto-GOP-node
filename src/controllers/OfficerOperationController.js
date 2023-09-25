@@ -142,6 +142,32 @@ class OfficerOperationController {
         }
     }
 
+    async deleteAllWithOfficerId(request, response) {
+
+        const httpHelper = new HttpHelper(response);
+
+        try {
+
+            const { ofid } = request.params;
+
+            if (!ofid) return httpHelper.badRequest('Parâmetros inválidos!');
+
+            const officer_operation_Exists = await OfficerOperationModel.findOne({
+                where: { officer_id: ofid }
+            });
+
+            if (!officer_operation_Exists) return httpHelper.notFound('Registro não existe no sistema!');
+
+            await OfficerOperationModel.destroy({ where: { officer_id: ofid } });
+
+            return httpHelper.ok({
+                message: 'Policial desvinculado de todas as operações com sucesso!'
+            })
+        } catch (error) {
+            return httpHelper.internalError(`Erro interno: ${error}`);
+        }
+    }
+
     async update(request, response) {
 
         const httpHelper = new HttpHelper(response);
