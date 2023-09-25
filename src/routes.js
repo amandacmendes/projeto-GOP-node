@@ -29,6 +29,11 @@ const resourceOperationController = new ResourceOperationController();
 // Users
 routes.post('/signup', userController.signup);
 routes.post('/signin', userController.signin);
+routes.get('/user', authMiddleware, userController.getAll);
+routes.get('/user/:id', authMiddleware, userController.getById);
+routes.delete('/user/:id', authMiddleware, userController.delete);
+routes.put('/user/:id', authMiddleware, userController.update);
+
 
 // Officer
 routes.post('/officer', authMiddleware, officerController.create);
