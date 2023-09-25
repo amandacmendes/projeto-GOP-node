@@ -104,7 +104,7 @@ class OfficerOperationController {
                 where: { officer_id: ofid, operation_id: oid }
             });
 
-            if (!officer_operation_Exists) return httpHelper.notFound('Registro não existe no sistema!');
+            if (!officer_operation_Exists) return httpHelper.ok('Não há registros no sistema.');
 
             await OfficerOperationModel.destroy({ where: { officer_id: ofid, operation_id: oid } });
 
@@ -130,7 +130,7 @@ class OfficerOperationController {
                 where: { operation_id: oid }
             });
 
-            if (!officer_operation_Exists) return httpHelper.notFound('Registro não existe no sistema!');
+            if (!officer_operation_Exists) return httpHelper.ok('Não há registros no sistema.');
 
             await OfficerOperationModel.destroy({ where: { operation_id: oid } });
 
@@ -156,7 +156,7 @@ class OfficerOperationController {
                 where: { officer_id: ofid }
             });
 
-            if (!officer_operation_Exists) return httpHelper.notFound('Registro não existe no sistema!');
+            if (!officer_operation_Exists) return httpHelper.ok('Não há registros no sistema.');
 
             await OfficerOperationModel.destroy({ where: { officer_id: ofid } });
 
@@ -187,7 +187,7 @@ class OfficerOperationController {
                 where: { officer_id: ofid, operation_id: oid }
             });
 
-            if (!officer_operation_Exists) return httpHelper.notFound('Registro não existe no sistema!');
+            if (!officer_operation_Exists) return httpHelper.ok('Não há registros no sistema.');
 
             await OfficerOperationModel.update({
                 officer_id,

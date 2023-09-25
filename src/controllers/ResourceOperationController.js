@@ -128,7 +128,7 @@ class ResourceOperationController {
                 where: { operation_id: oid }
             });
 
-            if (!resource_operation_Exists) return httpHelper.notFound('Registro não existe no sistema!');
+            if (!resource_operation_Exists) return httpHelper.ok('Não há registros no sistema.');
 
             await ResourceOperationModel.destroy({ where: { operation_id: oid } });
 
