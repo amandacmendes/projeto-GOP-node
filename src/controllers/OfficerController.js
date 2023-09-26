@@ -112,7 +112,7 @@ class OfficerController {
         try {
 
             const { id } = request.params;
-            const { name, team_id } = request.body;
+            const { name, team_id, status } = request.body;
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
@@ -121,7 +121,7 @@ class OfficerController {
             if (!officerExists) return httpHelper.notFound('Policial não encontrado!');
 
             await OfficerModel.update({
-                name, team_id
+                name, team_id, status
             }, {
                 where: { id }
             });

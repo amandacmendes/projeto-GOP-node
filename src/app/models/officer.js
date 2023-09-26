@@ -6,7 +6,8 @@ class OfficerModel extends Model {
   static init(database) {
     super.init({
       name: DataTypes.STRING,
-      team_id: DataTypes.INTEGER
+      team_id: DataTypes.INTEGER,
+      status: DataTypes.STRING(15)
     }, {
       sequelize: database,
       tableName: 'officer',
