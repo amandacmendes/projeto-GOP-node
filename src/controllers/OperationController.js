@@ -62,6 +62,8 @@ class OperationController {
     }
 
     async getById(request, response) {
+        const httpHelper = new HttpHelper(response);
+
         try {
             const { id } = request.params;
 
@@ -69,6 +71,33 @@ class OperationController {
 
             const operation = await OperationModel.findOne({
                 where: { id }
+            })
+                .then((data) => {
+                    if (data) {
+                        return response.status(200).json(data);
+                    } else {
+                        return response.status(204).json({ msg: "Não existem dados cadastrados." });
+                    }
+                });
+
+        } catch (error) {
+            return response.status(500).json({
+                error: `Erro interno: ${error}`
+            });
+        }
+    }
+
+    // routes.get('/operation/leadofficer/:id', operationController.getByLeadOfficerId);
+    async getByLeadOfficerId(request, response) {
+        const httpHelper = new HttpHelper(response);
+
+        try {
+            const { id } = request.params;
+
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+
+            const operation = await OperationModel.findAll({
+                where: { lead_officer_id: id }
             })
                 .then((data) => {
                     if (data) {
