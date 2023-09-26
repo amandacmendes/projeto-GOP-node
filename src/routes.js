@@ -43,10 +43,10 @@ routes.delete('/officer/:id', authMiddleware, officerController.delete);
 routes.put('/officer/:id', authMiddleware, officerController.update);
 routes.put('/officer/team/:tid', authMiddleware, officerController.updateTeam);
 
-
 // Team
 routes.post('/team', authMiddleware, teamController.create);
 routes.get('/team', authMiddleware, teamController.getAll);
+routes.get('/team/:id', authMiddleware, teamController.getById);
 routes.delete('/team/:id', authMiddleware, teamController.delete);
 routes.put('/team/:id', authMiddleware, teamController.update);
 
@@ -56,6 +56,7 @@ routes.get('/operation', authMiddleware, operationController.getAll);
 routes.delete('/operation/:id', authMiddleware, operationController.delete);
 routes.put('/operation/:id', authMiddleware, operationController.update);
 routes.get('/operation/:id', authMiddleware, operationController.getById);
+routes.get('/operation/leadofficer/:id', authMiddleware, operationController.getByLeadOfficerId);
 
 
 // OfficerOperation
