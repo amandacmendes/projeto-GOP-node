@@ -95,7 +95,7 @@ class ResourceController {
         try {
 
             const { id } = request.params;
-            const { description, resourcetype_id } = request.body;
+            const { description, resourcetype_id, status } = request.body;
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
 
@@ -104,7 +104,7 @@ class ResourceController {
             if (!resourceExists) return httpHelper.notFound('Recurso não encontrado!');
 
             await ResourceModel.update({
-                description, resourcetype_id
+                description, resourcetype_id, status
             }, {
                 where: { id }
             });
