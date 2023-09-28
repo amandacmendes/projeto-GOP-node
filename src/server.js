@@ -11,6 +11,8 @@ server.use(cors());
 server.use(express.json());
 server.use(routes);
 
-server.listen(8080, () => {
-    console.log('🚀 Server started!');
+const port = process.env.PORT || 8080;
+
+server.listen(port, () => {
+    console.log(`Server started on port ${port}!`);
 });
