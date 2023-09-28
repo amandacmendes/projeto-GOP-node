@@ -26,6 +26,9 @@ const resourceController = new ResourceController();
 const resourceTypeController = new ResourceTypeController();
 const resourceOperationController = new ResourceOperationController();
 
+// API Test
+routes.get('/', (req, res) => { return res.json("Hello world! ")})
+
 // Users
 routes.post('/signup', userController.signup);
 routes.post('/signin', userController.signin);
