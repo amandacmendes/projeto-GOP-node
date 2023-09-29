@@ -39,7 +39,7 @@ class UserController {
 
             if (!isPasswordValid) {
                 return response.status(400).json({
-                    error: 'Senha incorreta!'
+                    error: 'E-mail ou senha incorreta!'
                 });
             }
 
@@ -73,6 +73,16 @@ class UserController {
             if (!email || !password) {
                 return response.status(400).json({
                     error: 'Email e senha são obrigatórios!'
+                });
+            }
+
+            // Verifica se email já foi usado
+            const emailExists = await UserModel.findOne({
+                where: { email }
+            });
+            if (emailExists) {
+                return response.status(400).json({
+                    error: 'E-mail já cadastrado.'
                 });
             }
 
@@ -111,7 +121,7 @@ class UserController {
             );
 
             return response.status(201).json({
-                accessToken
+                accessToken, id: user.id
             });
 
         } catch (error) {
