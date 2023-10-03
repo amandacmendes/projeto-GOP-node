@@ -7,7 +7,11 @@ module.exports = {
     await queryInterface.bulkInsert('reasontype', [{
       description: 'MANDADO DE BUSCA E APREENSÃO DE BENS'
     }, {
-      description: 'MANDADO DE PRISÃO'
+      description: 'MANDADO DE PRISÃO PREVENTIVA'
+    }, {
+      description: 'MANDADO DE PRISÃO TEMPORÁRIA'
+    }, {
+      description: 'MANDADO DE CONDUÇÃO COERCITIVA'
     }]);
   },
 
